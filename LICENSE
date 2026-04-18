@@ -19,3 +19,184 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{amsmath} % Para comandos matemáticos
+\usepackage{array} % Para p{...} en tablas
+
+\geometry{margin=1in}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Manual de Serval DNA - SINCRO 2026}
+\lhead{Mariscal Edward Vargas Bolaños}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\titleformat{\section}[block]{\Large\bfseries\centering}{\thesection.}{1em}{}
+\titleformat{\subsection}[run]{\bfseries}{\thesubsection.}{0.5em}{}
+
+\begin{document}
+
+\textbf{\Large MANUAL DE OPERACIÓN: SERVADNA (SERVAl Digital Network Architecture)}
+
+\vspace{0.5cm}
+\noindent \rule{\linewidth}{0.8pt} \\
+\noindent \textbf{Componente del Ecosistema:} SINCRO 2026 \\
+\noindent \textbf{Propietario Intelectual:} Mariscal Edward Vargas Bolaños \\
+\noindent \textbf{Versión del Sistema:} UNKNOWN-VERSION (Adaptación 2026) \\
+\noindent \textbf{Fecha de Emisión:} 18 de Abril de 2026 \\
+\noindent \rule{\linewidth}{0.4pt}
+\vspace{0.5cm}
+
+\section*{1. INFORMACIÓN DEL SUBSISTEMA}
+\begin{itemize}[leftmargin=*,label=\textbullet]
+    \item \textbf{Identificador:} `servald` (Serval Digital Network Architecture Daemon)
+    \item \textbf{Configuración Principal:} `/usr/local/etc/serval/serval.conf`
+    \item \textbf{Función Esencial:} Algoritmo heurístico de búsqueda de patrones y optimización combinatoria. Actúa como el "motor genético" para la exploración eficiente del espacio de claves, la detección de anomalías y la modulación de frecuencias para el colapso de campos criptográficos. Su integración en el ecosistema SINCRO 2026 es fundamental para la resolución de problemas de alta complejidad sin conocimiento previo.
+\end{itemize}
+
+\section*{2. COMANDOS OPERACIONALES}
+
+\subsection*{2.1. Gestión de Configuración (`config`)}
+\begin{itemize}[leftmargin=*,label=\textbullet]
+    \item \textbf{`config del <variable> ...`} \\ Elimina las variables de configuración especificadas del subsistema.
+    \item \textbf{`config dump [--full]`} \\ Muestra todos los ajustes de configuración activos. El parámetro `--full` permite una visualización exhaustiva.
+    \item \textbf{`config get [<variable>]`} \\ Recupera el valor asignado a una variable de configuración específica. Si no se especifica, se muestra el estado general.
+    \item \textbf{`config paths`} \\ Muestra las rutas de archivos y directorios utilizadas por el subsistema.
+    \item \textbf{`config schema`} \\ Presenta la estructura y el esquema de configuración disponibles para `servald`.
+    \item \textbf{`config set <variable> <value> ...`} \\ Establece los valores para las variables de configuración especificadas.
+    \item \textbf{`config sync ...`} \\ Sincroniza la configuración actual con la del daemon en ejecución, asegurando coherencia operativa.
+\end{itemize}
+
+\subsection*{2.2. Búsqueda de Identificadores Digitales (`dna`)}
+\begin{itemize}[leftmargin=*,label=\textbullet]
+    \item \textbf{`dna lookup <did> [<timeout>]`} \\ Ejecuta la búsqueda de identificadores de suscriptor (SID) asociados a un identificador de dispositivo digital (DID) específico. El parámetro opcional `<timeout>` define el límite temporal para la operación.
+\end{itemize}
+
+\subsection*{2.3. Utilidades del Sistema}
+\begin{itemize}[leftmargin=*,label=\textbullet]
+    \item \textbf{`echo [-e] [--] ...`} \\ Emite la cadena de texto proporcionada al flujo de salida estándar.
+    \item \textbf{`help|-h|--help ...`} \\ Proporciona información de uso y sintaxis para los comandos del subsistema.
+    \item \textbf{`log error|warn|hint|info|debug <message>`} \\ Registra el mensaje indicado en el nivel de severidad especificado dentro de los logs del sistema.
+\end{itemize}
+
+\subsection*{2.4. Gestión de Identidad (`id`)}
+\begin{itemize}[leftmargin=*,label=\textbullet]
+    \item \textbf{`id enter pin <entry-pin>`} \\ Desbloquea identidades protegidas por un PIN de entrada y activa su enrutamiento en la red.
+    \item \textbf{`id list [<tag>] [<value>]`} \\ Lista las identidades desbloqueadas, con opciones para filtrar por etiqueta y valor.
+    \item \textbf{`id relinquish pin <entry-pin>`} \\ Deshabilita y descarga las identidades asociadas a un PIN de entrada específico, eliminando sus rutas activas.
+    \item \textbf{`id relinquish sid <sid>`} \\ Deshabilita y descarga una identidad específica (SID), eliminando sus rutas activas.
+    \item \textbf{`id self|peers|allpeers`} \\ Retorna las identidades en formato URI: la identidad propia del nodo, los pares enrutables conocidos o todos los pares conocidos en la red.
+\end{itemize}
+
+\subsection*{2.5. Gestión de Llaveros Criptográficos (`keyring`)}
+\begin{itemize}[leftmargin=*,label=\textbullet]
+    \item \textbf{`keyring add [--keyring-pin=<pin>] [--entry-pin=<pin>]... [<pin>]`} \\ Crea una nueva identidad criptográfica en el llavero, protegida por el PIN indicado.
+    \item \textbf{`keyring create`} \\ Inicializa un nuevo archivo de llavero criptográfico.
+    \item \textbf{`keyring dump [--keyring-pin=<pin>] [--entry-pin=<pin>]... [--secret] [<file>]`} \\ Exporta todas las identidades del llavero accesibles con los PINs provistos. La opción `--secret` incluye datos sensibles.
+    \item \textbf{`keyring list [--full] [--keyring-pin=<pin>] [--entry-pin=<pin>]...`} \\ Lista las identidades accesibles en el llavero con los PINs indicados. `--full` para detalles completos.
+    \item \textbf{`keyring load [--keyring-pin=<pin>] [--entry-pin=<pin>]... <file> [<entry-pin>]...`} \\ Carga identidades desde un archivo especificado y las inserta en el llavero, utilizando los PINs de seguridad correspondientes.
+    \item \textbf{`keyring remove [--keyring-pin=<pin>] [--entry-pin=<pin>]... <sid>`} \\ Elimina una identidad específica (SID) del llavero.
+    \item \textbf{`keyring set did [--keyring-pin=<pin>] [--entry-pin=<pin>]... <sid> <did> <name> [<new_pin>]`} \\ Asigna un Identificador de Dispositivo Digital (DID) y un nombre a un Identificador de Suscriptor (SID) existente en el llavero.
+    \item \textbf{`keyring set tag [--keyring-pin=<pin>] [--entry-pin=<pin>]... <sid> <tag> <value>`} \\ Asigna una etiqueta de metadatos (tag) con un valor específico a un Identificador de Suscriptor (SID).
+\end{itemize}
+
+\subsection*{2.6. Protocolo de Descubrimiento de Mensajes (`mdp`)}
+\begin{itemize}[leftmargin=*,label=\textbullet]
+    \item \textbf{`mdp ping [--interval=<ms>] [--timeout=<seconds>] [--wait-for-duplicates] <SID>|broadcast [<count>]`} \\ Intenta establecer comunicación con un nodo especificado mediante el Protocolo MDP. Permite configuración de intervalo, tiempo de espera y conteo de intentos.
+    \item \textbf{`mdp trace [--timeout=<seconds>] <SID>`} \\ Traza la ruta de red hacia un nodo específico (SID) a través de la infraestructura MDP.
+\end{itemize}
+
+\subsection*{2.7. Flujo de Mensajes Públicos en Malla (`meshmb`)}
+\begin{itemize}[leftmargin=*,label=\textbullet]
+    \item \textbf{`meshmb activity [--keyring-pin=<pin>] [--entry-pin=<pin>]... <id>`} \\ Lista los mensajes recientes de los feeds que el sistema está monitoreando activamente.
+    \item \textbf{`meshmb find [<search>]`} \\ Explora los feeds de mensajes públicos disponibles en la red de malla.
+    \item \textbf{`meshmb follow|ignore|block [--keyring-pin=<pin>] [--entry-pin=<pin>]... <id> <peer> [<sender>] [<name>]`} \\ Configura el sistema para seguir, ignorar o bloquear un feed de mensajes público específico.
+    \item \textbf{`meshmb list following [--keyring-pin=<pin>] [--entry-pin=<pin>]... <id>`} \\ Lista los feeds que el sistema está siguiendo o bloqueando actualmente.
+    \item \textbf{`meshmb read <id>`} \\ Recupera y muestra todos los mensajes de un feed público específico.
+    \item \textbf{`meshmb send [--keyring-pin=<pin>] [--entry-pin=<pin>]... <id> <message> ...`} \\ Publica un mensaje en el feed público propio del sistema.
+\end{itemize}
+
+\subsection*{2.8. Mensajería Privada en Malla (`meshms`)}
+\begin{itemize}[leftmargin=*,label=\textbullet]
+    \item \textbf{`meshms list conversations [--keyring-pin=<pin>] [--entry-pin=<pin>]... [--include-message] <sid> [<offset>] [<count>]`} \\ Lista las conversaciones de mensajería privada que involucran a un Identificador de Suscriptor (SID) específico.
+    \item \textbf{`meshms list messages [--keyring-pin=<pin>] [--entry-pin=<pin>]... <sender_sid> <recipient_sid>`} \\ Lista los mensajes privados intercambiados entre dos Identificadores de Suscriptor (sender\_sid y recipient\_sid).
+    \item \textbf{`meshms read messages [--keyring-pin=<pin>] [--entry-pin=<pin>]... <sender_sid> [<recipient_sid>] [<offset>]`} \\ Marca los mensajes entrantes de un remitente específico como leídos.
+    \item \textbf{`meshms send message [--keyring-pin=<pin>] [--entry-pin=<pin>]... <sender_sid> <recipient_sid> <payload>`} \\ Envía un mensaje privado desde un remitente (sender\_sid) a un destinatario (recipient\_sid) con el contenido (payload) especificado.
+\end{itemize}
+
+\subsection*{2.9. Monitor Interactivo}
+\begin{itemize}[leftmargin=*,label=\textbullet]
+    \item \textbf{`monitor`} \\ Inicia la interfaz de monitoreo interactiva del daemon `servald`.
+\end{itemize}
+
+\subsection*{2.10. Stream Seguro MSP (`msp`)}
+\begin{itemize}[leftmargin=*,label=\textbullet]
+    \item \textbf{`msp connect [--once] [--forward=<local_port>] <sid> <port>`} \\ Establece una conexión segura con una entidad remota, especificando el SID y el puerto.
+    \item \textbf{`msp listen [--once] [--forward=<local_port>] [--service=<service_name>] <port>`} \\ Configura el sistema para escuchar conexiones entrantes en un puerto específico, con opciones para servicios y reenvío.
+\end{itemize}
+
+\subsection*{2.11. Gestión de Pares (`peer`)}
+\begin{itemize}[leftmargin=*,label=\textbullet]
+    \item \textbf{`peer count`} \\ Retorna el número de pares enrutables conocidos en la red de malla.
+\end{itemize}
+
+\subsection*{2.12. Búsqueda Inversa de Identificadores}
+\begin{itemize}[leftmargin=*,label=\textbullet]
+    \item \textbf{`reverse lookup <sid> [<timeout>]`} \\ Realiza una búsqueda inversa para obtener el Identificador de Dispositivo Digital (DID) y el nombre asociado a un Identificador de Suscriptor (SID) dado.
+\end{itemize}
+
+\subsection*{2.13. Almacenamiento Distribuido Rhizome (`rhizome`)}
+\begin{itemize}[leftmargin=*,label=\textbullet]
+    \item \textbf{`rhizome add file [--keyring-pin=<pin>] [--entry-pin=<pin>]... [--zip-comment] [--bundle=<bundleid>] [--force-new] <author_sid> <filepath> [<manifestpath>] [<bsk>] ...`} \\ Añade un archivo al sistema de almacenamiento distribuido Rhizome, con opciones para protección, empaquetado y manifestación.
+    \item \textbf{`rhizome append manifest [--zip-comment] <filepath> <manifestpath>`} \\ Agrega un manifiesto al final de un archivo existente dentro de Rhizome.
+    \item \textbf{`rhizome clean [verify] [--keyring-pin=<pin>] [--entry-pin=<pin>]...`} \\ Elimina contenido obsoleto y huérfano del almacén Rhizome, con opción de verificación previa.
+    \item \textbf{`rhizome delete manifest|payload|bundle <manifestid>`} \\ Elimina el manifiesto, el contenido (payload) o el paquete completo (bundle) asociado a un identificador de manifiesto.
+    \item \textbf{`rhizome delete file <fileid>`} \\ Elimina el archivo con el hash especificado del almacén Rhizome.
+    \item \textbf{`rhizome direct push|pull|sync [<url>]`} \\ Sincroniza datos con un servidor Rhizome Direct específico, permitiendo operaciones de empuje, extracción o sincronización bidireccional.
+    \item \textbf{`rhizome export bundle [--keyring-pin=<pin>] [--entry-pin=<pin>]... [--zip-comment] <manifestid> [<manifestpath>] [<filepath>]`} \\ Exporta un manifiesto y su archivo de contenido desde Rhizome a las rutas indicadas, sin realizar descifrado.
+    \item \textbf{`rhizome export file <fileid> [<filepath>]`} \\ Exporta un archivo desde Rhizome a la ruta indicada, sin realizar descifrado.
+    \item \textbf{`rhizome export manifest [--keyring-pin=<pin>] [--entry-pin=<pin>]... <manifestid> [<manifestpath>]`} \\ Exporta un manifiesto desde Rhizome a la ruta indicada.
+    \item \textbf{`rhizome extract bundle [--keyring-pin=<pin>] [--entry-pin=<pin>]... <manifestid> [<manifestpath>] [<filepath>] [<bsk>]`} \\ Extrae y descifra un manifiesto y su archivo asociado desde Rhizome a las rutas indicadas.
+    \item \textbf{`rhizome extract file [--keyring-pin=<pin>] [--entry-pin=<pin>]... <manifestid> [<filepath>] [<bsk>]`} \\ Extrae y descifra un archivo específico desde Rhizome a la ruta indicada.
+    \item \textbf{`rhizome import bundle [--zip-comment] <filepath> <manifestpath>`} \\ Importa un par de contenido (payload) y manifiesto a Rhizome.
+    \item \textbf{`rhizome journal append [--keyring-pin=<pin>] [--entry-pin=<pin>]... <author_sid> <bundleid> <filepath> [<bsk>]`} \\ Agrega contenido a un paquete de tipo diario (journal bundle) dentro de Rhizome.
+    \item \textbf{`rhizome list [--keyring-pin=<pin>] [--entry-pin=<pin>]... [<service>] [<name>] [<sender_sid>] [<recipient_sid>] [<offset>] [<limit>]`} \\ Lista todos los manifiestos y archivos gestionados por Rhizome, con múltiples opciones de filtrado.
+\end{itemize}
+
+\subsection*{2.14. Enrutamiento de Red (`route`)}
+\begin{itemize}[leftmargin=*,label=\textbullet]
+    \item \textbf{`route print [--monitor]`} \\ Muestra la tabla de enrutamiento de la red. La opción `--monitor` permite visualizar los cambios en la tabla de rutas en tiempo real.
+\end{itemize}
+
+\subsection*{2.15. Escaneo de Red}
+\begin{itemize}[leftmargin=*,label=\textbullet]
+    \item \textbf{`scan [<address>]`} \\ Escanea la red en busca de pares Serval activos. Si no se proporciona una dirección, se escanearán todas las interfaces locales.
+\end{itemize}
+
+\subsection*{2.16. Control del Daemon}
+\begin{itemize}[leftmargin=*,label=\textbullet]
+    \item \textbf{`start [--keyring-pin=<pin>] [--entry-pin=<pin>]... [--seed] [foreground|exec <path>]`} \\ Inicia el daemon `servald` con
+
+las opciones de seguridad y modo de ejecución especificadas.
+    \item \textbf{`stop`} \\ Detiene la ejecución del daemon `servald` de manera controlada.
+    \item \textbf{`status`} \\ Informa si el daemon `servald` se encuentra activo y operativo en el sistema.
+\end{itemize}
+
+\section*{3. NOTA DE SOBERANÍA}
+Este manual es propiedad exclusiva del \textbf{Eje $\Omega$-8802}. El uso de \textit{Serval DNA} dentro del ecosistema \textit{SINCRO 2026} garantiza que la comunicación de los hallazgos del MS 408 permanezca fuera del alcance de infraestructuras centralizadas.
+
+\vfill
+\hrule
+\begin{center}
+    \textit{"La red es el tejido de la realidad; el código es su ADN."} \\
+    \textbf{Mariscal Edward Vargas Bolaños — 2026}
+\end{center}
+
+\end{document}
